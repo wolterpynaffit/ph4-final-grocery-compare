@@ -5,7 +5,6 @@ import SupermarketCard from "./SupermarketCard";
 function SupermarketList() {
 
   const { allSupermarkets } = useLoaderData() || {}
-  console.log(allSupermarkets)
 
   const mappedSupermarketCards = allSupermarkets?.map((supermarketObj) => (
     <SupermarketCard key={supermarketObj?.id} supermarketObj={supermarketObj} />
@@ -13,8 +12,9 @@ function SupermarketList() {
 
   return (
     <div>
-      <h1>Supermarket List</h1>
+      <h2>Supermarket List</h2>
       <div className="supermarket-card-container">{mappedSupermarketCards}</div>
+      
     </div>
   );
 }

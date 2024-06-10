@@ -1,51 +1,76 @@
-import { useParams } from "react-router-dom"
-import { useState } from "react"
-import CartList from "./CartList"
+import { useState } from "react";
 
 
-export default function ProductCard({ productObj }) {
+export default function ProductCard({ productObj, addCartItems, cart, setCart }) {
 
+  const [add, setAdd] = useState(false)
 
-    const [addItems, setAddItems] = useState(false)
+  function handleToggle(){
+    setAdd(!add)
+  }
     
-    
-    function handleAddToCart(e){
+  function handleAddToCart() {        
+    const OPTIONS = { 
+        method : "POST",
+        headers : { 
+            "Accept" : "application/json",
+            "Content-type" : "application/json"
+        },
+        body : JSON.stringify({ 
+            consumer_id: 1,
+            product_id : productObj.id
+        })
+    } 
+    fetch('/cart_items', OPTIONS)
+    .then(response => response.json())
+    .then(newCartItem => {
+      if (newCartItem.id) {
+        addCartItems(newCartItem)
+      }
+    })
+  }
 
-        e.preventDefault()
+  function deleteCartItem(removedCartItem) {
+    const filteredItems = cart.filter((item) => item.id !== removedCartItem.id);
+    setCart(filteredItems);
+  }
 
-        
-    }
+  function handleRemoveCart() {
+    const OPTIONS = { method: "DELETE" };
+    fetch(`http://localhost:5555/cart_items/${productObj.product_id}`, OPTIONS)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+        deleteCartItem(productObj);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
     
     return (
         <div className='product-card'>
+
+          <div className='card-content'>
             <h3>{productObj.name}</h3>
-            <img 
-            src={productObj.image} 
-            alt="product"></img>
-            <button onClick={() => handleAddToCart(<CartList/>)}>add to cart</button>
+            <img
+              src={productObj.image}
+              alt={productObj.name}
+              className="product-image"
+            />
+          </div>
+          <button onClick={handleToggle} className=" add-to-cart icon-container">
+          {
+            add ? 
+            // in order to have this update dynamically, we need another attribute on the backend that holds whether the state of "in-cart" is true or false
+            (<i className="fa-solid fa-minus" onClick={() => handleAddToCart()}></i>) 
+            : 
+            (<i className="fa-solid fa-plus " onClick={() => handleAddToCart()}></i>)
+          }
 
-            {/* <svg onClick={() => handleAddToCart} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-            </svg> */}
+          </button>
+ 
         </div>
-    )
+      );
 }
-
-// const [didAnswerIsTrue, setDidAnswerIsTrue] = useState(false)
-//     // answer: "19"
-
-    
-
-//     function handlePossibleAnswer(e) { 
-//         // "19" = "19"
-//         if(triviaObj.correctAnswer === e.target.textContent){ 
-//             // answer: true
-//             setDidAnswerIsTrue(true)    
-//             console.log("I am correct!")
-//         } else {
-//             setDidAnswerIsTrue(false)
-//             console.log("Am I correct?")
-//         }
-//     }
-    

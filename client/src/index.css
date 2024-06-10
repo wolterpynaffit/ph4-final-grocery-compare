@@ -1,13 +1,45 @@
+/* IMPORTED FONT OPTIONS.... */
+/* font-family: 'Abel', sans-serif;
+font-family: 'Cormorant', serif;
+font-family: 'Edu QLD Beginner', cursive;
+font-family: 'Homemade Apple', cursive;
+font-family: 'Love Ya Like A Sister', cursive;
+font-family: 'Rock Salt', cursive;
+font-family: 'Yomogi', cursive;
+ */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: rgb(69, 68, 68)
+  /* border: 1px solid orange; */
+}
+
 nav {
   text-align: center;
+  margin: 2rem;
+  margin-bottom: 2rem;
 }
 
 nav a {
   padding: 0.5em 1em;
+  color: inherit;
+  font-family: 'Cormorant', serif; 
 }
 
 body {
   margin: 0;
+  padding: 2rem;
+  background-color: #F6F2E9
+}
+
+.temporary {
+  text-align: center;
+}
+
+.shopping-list {
+  /* padding: 6rem; */
 }
 
 .main-header h1 {
@@ -16,18 +48,385 @@ body {
 
 .link {
   text-decoration: none;
-  margin: 1.2em;
+  font-size: 2rem;
+  margin: 1rem;
 }
 
 .link:hover {
-  background-color: black;
-  color: white;
+  color: rgb(36, 206, 209);
   transition: .5s;
 }
 
-.product-card img { 
-  width: 15%;
-  aspect-ratio : 3/2;
-  object-fit: contain;
-  mix-blend-mode: color-burn;
+
+/* Container for Product Cards */
+.products-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 8px;
+  margin-left: -4px;
 }
+
+/* Product Card Styles */
+.product-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  width: 15rem;
+  height: 25rem;
+  padding-top: 16%;
+  position: relative;
+  background-color: #fff;
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  background-color: #F1E7DD;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  /* Plus and Minus Icon Styles */
+.product-card .icon {
+  position: absolute;
+  bottom: 10px; /* Adjust the vertical position as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px; /* Adjust the icon size as needed */
+  color: #000; /* Set the icon color */
+  cursor: pointer;
+}
+
+  .product-card img {
+    width: 50%;
+    object-fit: contain;
+  }
+
+  .card-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 69%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+ /* ----------------------BUTTON ----------------------  */
+
+  .add-to-cart {
+    background-color: transparent;
+    /* color: #fff; */
+    border: none;
+    border-radius: 50%;
+    padding: 1em 1em;
+    cursor: pointer;
+    font-weight: bold;
+    /* transition: background-color 0.2s ease-in-out; */
+    font-size: 1.5em;
+
+
+  }
+}
+
+/* this button is for the list */
+button {
+  border: none;
+  border-radius: 10rem;
+  height: 2rem;
+  width: 6rem;
+  background-color: inherit;
+
+}
+
+/* list effects */
+.search-stores {
+  width: 13rem;
+  height: 4rem;
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  color: white;
+  background-color: rgb(104,126,143);
+  position: absolute;
+  right: 10rem;
+}
+
+.back-button {
+  /* border-radius:5rem; */
+  height: 10rem;
+  width: 10rem;
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  color: white;
+  background-color: rgb(104,126,143);
+  position: absolute;
+  right: 5rem;
+  top: 25rem;
+}
+
+.cart-items {
+  position: absolute;
+  top: 40rem;
+  right: 5rem;
+}
+
+.search-stores:hover {
+  color: rgb(104,126,143);
+  background-color: white;
+  border: 1px solid rgb(104,126,143);
+  transition: .4s;
+  cursor: pointer;
+}
+
+ /* ----------------------SEARCH ----------------------  */
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  padding: 10px;
+  width: 500px;
+  top:32rem;
+  left: 80px;
+}
+
+.search-input {
+  flex-grow: 1;
+  border: none;
+  padding: 20px 30px; 
+  font-size: 14px;
+  background-repeat: no-repeat;
+  border-radius: 5rem;
+  background-position: right 10px center; 
+}
+
+h1 {
+  font-family: 'Yomogi' ;
+  color:rgb(104, 126, 144);
+  font-size: 7rem;
+  margin: 1.5rem;
+}
+
+h3 {
+  display: block;
+  font-size: 1.5rem;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-family: 'Cormorant', serif;
+  font-weight: 500; 
+}
+
+.cart-header {
+  font-size: 3rem;
+  font-family: 'Cormorant', serif;
+}
+
+/* this will handle the list to side bar */
+.product-page {
+  display: flex;
+  flex-direction: column; /* Stack the search and content vertically */
+}
+
+.content {
+  display: flex;
+  flex-direction: row; /* Arrange the product list and cart horizontally */
+}
+
+.product-list {
+  flex: 7; /* Take up the left column */
+  padding: 0 1rem; /* Add padding to separate columns */
+}
+
+.cart-list {
+  flex: 3; /* Take up the right column */
+  padding: 0 1rem; /* Add padding to separate columns */
+}
+
+/* this is handling the two coloumn grid in the list */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+/* .cart-items {
+  position: absolute;
+  top: 60rem;
+  right: 5rem;
+} */
+
+
+.cart-item-details {
+  flex-grow:1;
+  justify-content: space-between;
+  margin: 2rem;
+
+  display: flex;
+  align-items: center;
+  flex-grow: 1; /* Allow the details to grow and push the button to the right */
+}
+
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin-right: 1rem;
+}
+
+.remove-button {
+  background-color: #ff5733; /* Choose your button color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.remove-button:hover {
+  background-color: #e64c29; /* Choose your button hover color */
+  transition: background-color 0.3s;
+}
+
+/* Add this CSS to your existing styles */
+.icon-container {
+  position: absolute;
+  bottom: 20px; /* Adjust the value to control the vertical position */
+  left: 50%; /* Center the icons horizontally */
+  transform: translateX(-50%);
+  width: 100%;
+  text-align: center;
+}
+
+.add-to-cart.remove {
+  
+  background-color: #ff5733;
+  color: white;
+}
+
+/* -----------------------------for the compare cart------------------------ */
+
+.product-image{ 
+  width: 80%;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+/* Styles for the Compare Stores page */
+
+.compare-cart {
+  text-align: center;
+  margin: 1rem;
+}
+
+.compare-prices-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.compare-prices-labels {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  background-color: #F1E7DD;
+  border-radius: 8px;
+  margin: 0 auto; /* Center the labels horizontally */
+}
+
+.compare-prices-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem;
+  margin: 0 auto; /* Center the product items horizontally */
+}
+
+.compare-column {
+  flex-basis: calc(33.33% - 1rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.compare-prices-item {
+  margin: 0.5rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  text-align: center;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+}
+
+.compare-prices-item h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.product-image {
+  width: 80%;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+.price-div {
+  font-weight: bold;
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+  padding-top: 16%;
+}
+
+.price-column {
+  display: flex;
+  position: relative;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0 var(--price-padding, 7em); /* Use a CSS variable for padding */
+}
+
+.compare-price-total {
+  margin-top: 1rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  background-color: #F1E7DD;
+  border-radius: 8px;
+  margin: 0 auto; /* Center the labels horizontally */
+}
+
+
+
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem; /* Adjust the margin as needed */
+}
+
+.pagination button.active {
+  font-weight: bold;
+  font-size: medium;
+}
+
+

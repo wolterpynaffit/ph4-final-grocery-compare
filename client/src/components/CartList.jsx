@@ -1,28 +1,36 @@
 import React from 'react'
-import {useLoaderData} from 'react-router-dom'
 import CartItem from "./CartItem.jsx"
+import { useNavigate } from 'react-router-dom'
 
+function CartList({ cart, setCart }){
 
-function CartList(){
+    const navigate = useNavigate()  
 
-    const { allCartItems } = useLoaderData()
-
-    const mappedCartItems = allCartItems?.map(cartItem => (
+    const mappedCartItems = cart.map(cartItem => (
       <CartItem 
-        key={cartItem.id} cartItem={cartItem}
+        key={cartItem.id} 
+        cartItem={cartItem}
+        cart={cart}
+        setCart={setCart}
       />
     ))
 
-    
-    for(let i = 0; i < mappedCartItems; i++)
-    
-    
+    function handleSearchStores(){ 
+      navigate('/compare-stores')
+    } 
   
     return (
       <div className='shopping-list'>
-        <h3>Shopping List</h3>
-        {mappedCartItems}
-        <h4> THIS IS THE LIST</h4>
+        <h3 className='cart-header'>Grocery List</h3>
+        <button 
+          className='search-stores' 
+          onClick={handleSearchStores}
+        >
+          Search Stores
+        </button>
+        <div className='cart-items'>
+          {mappedCartItems}
+        </div>
       </div>
   )
 }
